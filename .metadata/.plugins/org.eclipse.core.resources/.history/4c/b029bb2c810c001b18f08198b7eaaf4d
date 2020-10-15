@@ -1,0 +1,11 @@
+package dataGridNodeAPI.script.node;
+
+class proceses {
+	
+}
+
+public class Node_Compute {
+		public Node_Compute(String proc, String params) {
+						
+		}
+}

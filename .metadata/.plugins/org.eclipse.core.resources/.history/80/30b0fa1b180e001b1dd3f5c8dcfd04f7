@@ -1,0 +1,11 @@
+package dataGridNodeAPI.MAIN;
+import dataGridNodeAPI.script.node.Form;
+public class main {
+
+	public static void main(String[] args) {
+		for(int t=0;t<10;t++) {
+			Form node = new Form();
+		}
+	}
+
+}

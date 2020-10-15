@@ -1,0 +1,8 @@
+package Prg.Api;
+
+public class api {
+	public api(){}
+	public String show() {
+		return "http://localhost:8000";
+	}
+}

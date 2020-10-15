@@ -1,0 +1,13 @@
+package dataGridNodeAPI.script.node;
+import GET.get;
+import Prg.Api.api;
+import java.util.UUID;
+public class Form {
+	String uuid = UUID.randomUUID().toString();
+	public Form() {		
+		get GET = new get();		
+		String res = GET.exec("http://localhost:8000/node/init/"+this.uuid+"/create");
+		System.out.println(res);
+		
+	}
+}

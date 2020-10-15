@@ -1,0 +1,42 @@
+package dataGridNodeAPI.script.node;
+
+import java.util.ArrayList;
+
+public class Node_Compute {
+		String output = null;
+		public Node_Compute() {
+			// TODO Auto-generated constructor stub
+		}
+		public void proceses(String proc, String params) {
+			switch (proc) {
+			case "sqrt":
+				double res = Math.sqrt(Double.parseDouble(params));
+				System.out.println(res);
+				this.output = String.valueOf(res).substring(0, 5);
+				break;
+			case "relu":
+				String[] params1 = params.split(",");
+				ArrayList<double> res1 = new ArrayList<double>();
+				for(String item : params1) {
+					double converted = Double.parseDouble(item);
+					if(converted>0) {
+						res1.add(converted)
+					}
+					else {
+						
+					}
+				}
+				break;
+			default:			
+				//this.output = Integer.MIN_VALUE;
+				
+				break;
+				
+			}
+		}
+		public String Compute(String proc, String params) {			
+			this.proceses(proc, params);
+			return this.output;
+			
+		}
+}

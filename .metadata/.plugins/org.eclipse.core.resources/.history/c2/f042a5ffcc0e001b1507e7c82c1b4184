@@ -1,0 +1,56 @@
+package dataGridNodeAPI.script.node;
+import GET.get;
+import POST.post;
+import Prg.Api.api;
+
+import java.util.Base64;
+import java.util.UUID;
+import dataGridNodeAPI.script.node.Node_Compute;
+import java.util.concurrent.TimeUnit;
+
+import org.omg.CORBA.TIMEOUT;
+public class Form  {
+	api API = new api();
+	String uuid = UUID.randomUUID().toString();
+	public Form() {		
+		get GET = new get();		
+		post POST = new post();
+		GET.exec(API.show()+"/node/init/"+this.uuid+"/create");
+		for(int x=0;x<100;x++) {
+			String task = GET.exec(API.show()+"/node/init/"+this.uuid+"/check-for-process");
+			System.out.println(task);
+			if(task.equals("empty")) {
+
+			}
+			else {
+				//System.out.println(task.split("#")[0]);
+				try {
+					Node_Compute proc = new Node_Compute();
+					proc.Compute(task.split("#")[0], task.split("#")[1]);
+					System.out.println("output="+proc.output);
+					//"https://enmlfbmjyaluo.x.pipedream.net/"
+					Base64.Encoder encoder = Base64.getEncoder();
+					String ProcOutString = String.valueOf(proc.output);
+					System.out.println(POST.exec(API.show()+"/node/interact/"+this.uuid+"/complete-task/"+encoder.encodeToString(ProcOutString.getBytes()), "{\"x\": \""+proc.output+"\"}"));
+				}
+				catch (Exception e) {
+					e.printStackTrace();
+					GET.exec(API.show()+"/node/init/"+this.uuid+"/terminate");
+					
+				}
+				
+				
+			}
+			try {										
+				TimeUnit.SECONDS.sleep(3);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				GET.exec(API.show()+"/node/init/"+this.uuid+"/terminate");
+			}
+		}
+
+		GET.exec(API.show()+"/node/init/"+this.uuid+"/terminate");
+
+	}
+}

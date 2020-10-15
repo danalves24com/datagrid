@@ -1,0 +1,48 @@
+package dataGridNodeAPI.script.node;
+import GET.get;
+import POST.post;
+import Prg.Api.api;
+import java.util.UUID;
+import dataGridNodeAPI.script.node.Node_Compute;
+import java.util.concurrent.TimeUnit;
+
+import org.omg.CORBA.TIMEOUT;
+public class Form {
+	String uuid = UUID.randomUUID().toString();
+	public Form() {		
+		get GET = new get();		
+		post POST = new post();
+		GET.exec("http://localhost:8000/node/init/"+this.uuid+"/create");
+		for(int x=0;x<100;x++) {
+			String task = GET.exec("http://localhost:8000/node/init/"+this.uuid+"/check-for-process");
+			System.out.println(task);
+			if(task.equals("empty")) {
+
+			}
+			else {
+				//System.out.println(task.split("#")[0]);
+				try {
+					Node_Compute proc = new Node_Compute();				
+					proc.Compute(task.split("#")[0], Double.parseDouble(task.split("#")[1]));
+					System.out.println("output="+proc.output);
+					POST.exec("http://localhost:8000/node/interact/"+this.uuid+"/complete-task", "output="+proc.output);
+				}
+				catch (Exception e) {
+					e.printStackTrace();
+					
+				}
+				
+				
+			}
+			try {										
+				TimeUnit.SECONDS.sleep(3);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		GET.exec("http://localhost:8000/node/init/"+this.uuid+"/terminate");
+
+	}
+}

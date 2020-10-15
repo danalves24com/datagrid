@@ -1,0 +1,28 @@
+package dataGridNodeAPI.script.node;
+
+public class Node_Compute {
+		int output = 0;
+		public Node_Compute() {
+			// TODO Auto-generated constructor stub
+		}
+		public void proceses(String proc, double params) {
+			switch (proc) {
+			case "backpropag":
+				int res = (int) Math.sqrt(params);
+				System.out.println(res);
+				this.output = res;
+				break;
+				
+			default:			
+				//this.output = Integer.MIN_VALUE;
+				
+				break;
+				
+			}
+		}
+		public int Compute(String proc, double params) {			
+			this.proceses(proc, params);
+			return this.output;
+			
+		}
+}

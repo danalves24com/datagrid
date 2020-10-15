@@ -1,0 +1,35 @@
+package dataGridNodeAPI.script.node;
+import GET.get;
+import Prg.Api.api;
+import java.util.UUID;
+import dataGridNodeAPI.script.node.Node_Compute;
+import java.util.concurrent.TimeUnit;
+
+import org.omg.CORBA.TIMEOUT;
+public class Form {
+	String uuid = UUID.randomUUID().toString();
+	public Form() {		
+		get GET = new get();		
+		GET.exec("http://localhost:8000/node/init/"+this.uuid+"/create");
+		for(int x=0;x<10;x++) {
+			String task = GET.exec("http://localhost:8000/node/init/"+this.uuid+"/check-for-process");
+			if(task.equals("empty")) {
+
+			}
+			else {
+				System.out.println(task.split("|"));
+				//Node_Compute proc = new Node_Compute();				
+				//proc.Compute(task.split("|")[0], Double.parseDouble(task.split("|")[1]));
+			}
+			try {										
+				TimeUnit.SECONDS.sleep(3);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		GET.exec("http://localhost:8000/node/init/"+this.uuid+"/terminate");
+
+	}
+}

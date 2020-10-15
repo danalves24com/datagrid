@@ -1,0 +1,21 @@
+package dataGridNodeAPI.script.node;
+
+public class Node_Compute {
+		int output = 0;
+		public void proceses(String proc, double params) {
+			switch (proc) {
+			case "backpropag":
+				int res = (int) Math.sqrt(params);
+				this.output = res;
+				break;
+				
+			default:			
+				this.output = Integer.MIN_VALUE;
+				break;
+				
+			}
+		}
+		public Node_Compute(String proc, double params) {			
+			proceses(proc, params);
+		}
+}
