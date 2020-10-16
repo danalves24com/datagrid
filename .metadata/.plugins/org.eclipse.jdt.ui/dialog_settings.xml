@@ -29,11 +29,13 @@
 		<item key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION" value="C:\Users\Daniel Alves Rosel\Documents\Invoy\Projects\Data Grid2"/>
 		<item key="FatJarPackageWizardPage.LIBRARY_HANDLING" value="2"/>
 		<item key="FatJarPackageWizardPage.LAUNCH_CONFIGURATION_SELECTION_NAME" value="main - dataGridNodeAPI"/>
-		<item key="FatJarPackageWizardPage.DESTINATION_PATH_SELECTION" value="C:\Users\Daniel Alves Rosel\Documents\Invoy\Projects\Data Grid2\nodes\v1.jar"/>
+		<item key="FatJarPackageWizardPage.DESTINATION_PATH_SELECTION" value="H:\v2.jar"/>
 		<list key="FatJarPackageWizardPage.DESTINATION_NAMES_ID">
+			<item value="H:\v2.jar"/>
 			<item value="C:\Users\Daniel Alves Rosel\Documents\Invoy\Projects\Data Grid2\nodes\v1.jar"/>
 		</list>
 		<list key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION_HISTORY">
+			<item value="C:\Users\Daniel Alves Rosel\Documents\Invoy\Projects\Data Grid2.xml"/>
 			<item value=".xml"/>
 		</list>
 	</section>
